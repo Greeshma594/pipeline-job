@@ -10,6 +10,7 @@ pipeline {
             steps {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                     echo "Stage: Test"
+					sh 'make'
                                 }
             }
             post {
