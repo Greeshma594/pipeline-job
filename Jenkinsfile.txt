@@ -1,0 +1,39 @@
+pipeline {
+      agent any 
+      stages {
+          stage('BUILD') {
+            steps {
+               echo "Stage: build"
+        }
+      }
+          stage('TEST') {
+            steps {
+                    catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                    echo "Stage: Test"
+                                }
+            }
+            post {
+                failure {
+                    echo "Tests failed, but continuing with the pipeline"
+                }
+                unstable {
+                    echo "Tests are unstable, but continuing with the pipeline"
+                }
+            }
+        }
+      
+          stage('DEPLOY') {
+            steps {
+                echo "Stage: Deploying"
+        }
+      }
+          stage('NOTIF') {
+             steps {
+                echo "Stage: sending mail"
+                
+        }
+      }
+
+
+      }
+    }
