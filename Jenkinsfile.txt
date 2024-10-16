@@ -1,3 +1,4 @@
+@Library('libraries') _
 pipeline {
       agent any 
       stages {
@@ -9,8 +10,8 @@ pipeline {
           stage('TEST') {
             steps {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                    echo "Stage: Test"
-					sh 'make'
+                    echo "Stage: 
+					sh 'source library.sh'
                                 }
             }
             post {
