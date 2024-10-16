@@ -10,7 +10,7 @@ pipeline {
           stage('TEST') {
             steps {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
-                    echo "Stage: 
+                    echo "Stage:"
 					sh 'source library.sh'
                                 }
             }
